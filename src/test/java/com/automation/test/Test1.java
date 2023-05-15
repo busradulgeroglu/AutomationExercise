@@ -119,6 +119,13 @@ public class Test1 extends TestBase{
         extentLogger.info("Click OK button");
         Alert alert = driver.switchTo().alert();
         alert.accept();
+        extentLogger.info("Verify success message 'Success! " +
+                "Your details have been submitted successfully.' is visible");
+        String expectedText = contactPage.succesText.getText();
+        String actualText = "Success! Your details have been submitted successfully.";
+        Assert.assertEquals(actualText,expectedText);
+        extentLogger.info("Click 'Home' button and verify that landed to home page successfully");
+        contactPage.goHome.click();
 
     }
 
