@@ -9,4 +9,6 @@ public class HomePage extends BasePage{
     public WebElement homeButton;
     @FindBy(xpath = "//a[text()=' Signup / Login']")
     public WebElement signUpButton;
+    @FindBy(xpath = "//a[text()=' Contact us']")
+    public WebElement contactUs;
 }

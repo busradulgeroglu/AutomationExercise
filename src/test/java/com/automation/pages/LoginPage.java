@@ -41,6 +41,12 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//a[text()=' Logout']")
     public WebElement logOut;
 
+    @FindBy(xpath = "//h2[text()='New User Signup!']")
+    public WebElement signUpText;
+
+    @FindBy(xpath = "//p[text()='Email Address already exist!']")
+    public WebElement signUpWarningText;
+
 
     public void signUp(String name, String email){
         homePage.signUpButton.click();
