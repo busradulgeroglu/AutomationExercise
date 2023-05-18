@@ -142,10 +142,43 @@ public class Test1 extends TestBase{
         productsPage.adCloseBtn.click();
         extentLogger.info("Verify user is navigated to ALL PRODUCTS page successfully");
         Assert.assertTrue(productsPage.allProductsText.isDisplayed());
-
-
-
-
+        extentLogger.info("The products list is visible");
+        productsPage.seeProducts();
+        extentLogger.info("Click on 'View Product' of first product");
+        BrowserUtils.clickWithJS(productsPage.firstProducts);
+        extentLogger.info("Verify that detail detail is visible: product name, category, " +
+                "price, availability, condition, brand");
+        System.out.println("productsPage.productInformation.getText() = " + productsPage.productInformation.getText());
+        Assert.assertTrue(productsPage.productInformation.isDisplayed());
     }
+
+    @Test
+
+    public void test7(){
+        HomePage homePage = new HomePage();
+        LoginPage loginPage = new LoginPage();
+        ProductsPage productsPage = new ProductsPage();
+        SearchPage searchPage = new SearchPage();
+        extentLogger = report.createTest("Negative login test");
+        extentLogger.info("Verify that home page is visible successfully");
+        Assert.assertTrue(homePage.homeButton.isDisplayed());
+        extentLogger.info("Click on 'Products' button");
+        homePage.products.click();
+        driver.switchTo().frame("aswift_4");
+        driver.switchTo().frame("ad_iframe");
+        BrowserUtils.waitFor(2);
+        productsPage.adCloseBtn.click();
+        extentLogger.info("Verify user is navigated to ALL PRODUCTS page successfully");
+        Assert.assertTrue(productsPage.allProductsText.isDisplayed());
+        extentLogger.info("Enter product name in search input and click search button");
+        searchPage.setSearchProduct("hgd");
+        extentLogger.info("Verify 'SEARCHED PRODUCTS' is visible");
+        String actualText= "SEARCHED PRODUCTS";
+        String expectedText = searchPage.searchProductText.getText();
+        Assert.assertEquals(actualText,expectedText);
+        extentLogger.info(" Verify all the products related to search are visible");
+        searchPage.seeSearchProducts();
+    }
+
 
 }
