@@ -11,4 +11,8 @@ public class HomePage extends BasePage{
     public WebElement signUpButton;
     @FindBy(xpath = "//a[text()=' Contact us']")
     public WebElement contactUs;
+    @FindBy(xpath = "//a[text()=' Products']")
+    public WebElement products;
+
+
 }

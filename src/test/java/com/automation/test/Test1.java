@@ -1,9 +1,6 @@
 package com.automation.test;
 
-import com.automation.pages.AccountPage;
-import com.automation.pages.ContactPage;
-import com.automation.pages.HomePage;
-import com.automation.pages.LoginPage;
+import com.automation.pages.*;
 import com.automation.utilities.BrowserUtils;
 import com.automation.utilities.ConfigurationReader;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -18,7 +15,7 @@ public class Test1 extends TestBase{
         HomePage homePage = new HomePage();
         Assert.assertTrue(homePage.homeButton.isDisplayed());
         LoginPage loginPage = new LoginPage();
-        loginPage.signUp("sen21","sen21212121@gmail.com");
+        loginPage.signUp("sen2121","sen212121211@gmail.com");
         //Assert.assertTrue(loginPage.accountInformation.isDisplayed());
         BrowserUtils.waitFor(1);
         String actualText = "ENTER ACCOUNT INFORMATION";
@@ -126,6 +123,28 @@ public class Test1 extends TestBase{
         Assert.assertEquals(actualText,expectedText);
         extentLogger.info("Click 'Home' button and verify that landed to home page successfully");
         contactPage.goHome.click();
+
+    }
+
+    @Test
+    public void test6(){
+        HomePage homePage = new HomePage();
+        LoginPage loginPage = new LoginPage();
+        ProductsPage productsPage = new ProductsPage();
+        extentLogger = report.createTest("Negative login test");
+        extentLogger.info("Verify that home page is visible successfully");
+        Assert.assertTrue(homePage.homeButton.isDisplayed());
+        extentLogger.info("Click on 'Products' button");
+        homePage.products.click();
+        driver.switchTo().frame("aswift_4");
+        driver.switchTo().frame("ad_iframe");
+        BrowserUtils.waitFor(2);
+        productsPage.adCloseBtn.click();
+        extentLogger.info("Verify user is navigated to ALL PRODUCTS page successfully");
+        Assert.assertTrue(productsPage.allProductsText.isDisplayed());
+
+
+
 
     }
 
